@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!---->
+<BC4JConfig xmlns="http://xmlns.oracle.com/bc4j/configuration" version="11.1">
+  <AppModuleConfigBag ApplicationName="de.hahn.blog.treetable.model.BTTAppModule">
+    <AppModuleConfig name="BTTAppModuleLocal" jbo.project="de.hahn.blog.treetable.model.BTTModel"
+                     ApplicationName="de.hahn.blog.treetable.model.BTTAppModule" DeployPlatform="LOCAL">
+      <Database jbo.TypeMapEntries="OracleApps" JDBCDataSource="java:comp/env/jdbc/HR_XEDS"/>
+      <Security AppModuleJndiName="de.hahn.blog.treetable.model.BTTAppModule"/>
+    </AppModuleConfig>
+    <AppModuleConfig name="BTTAppModuleShared" jbo.project="de.hahn.blog.treetable.model.BTTModel"
+                     ApplicationName="de.hahn.blog.treetable.model.BTTAppModule" DeployPlatform="LOCAL">
+      <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+      <Database jbo.TypeMapEntries="OracleApps" JDBCDataSource="java:comp/env/jdbc/HR_XEDS"/>
+      <Security AppModuleJndiName="de.hahn.blog.treetable.model.BTTAppModule"/>
+    </AppModuleConfig>
+  </AppModuleConfigBag>
+</BC4JConfig>

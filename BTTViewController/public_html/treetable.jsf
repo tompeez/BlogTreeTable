@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="treetable.jsf" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:panelGridLayout id="pgl1">
+                <af:gridRow height="50px" id="gr2">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc2">
+                        <!-- Header -->
+                        <af:outputText value="Tree Table" id="ot1" inlineStyle="font-size:x-large;"/>
+                    </af:gridCell>
+                </af:gridRow>
+                <af:gridRow height="100%" id="gr1">
+                    <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                        <!-- Content -->
+                        <af:panelCollection id="pc1">
+                            <f:facet name="menus"/>
+                            <f:facet name="toolbar"/>
+                            <f:facet name="statusbar"/>
+<af:treeTable value="#{bindings.DepartmentsView1.treeModel}" var="node"
+              selectionListener="#{bindings.DepartmentsView1.treeModel.makeCurrent}"
+              rowSelection="single" id="tt1">
+    <f:facet name="nodeStamp">
+        <af:column id="c1" width="200">
+            <af:switcher facetName="#{node.hierTypeBinding.viewDefName}"
+                         defaultFacet="default" id="sw1">
+                <f:facet name="de.hahn.blog.treetable.model.views.DepartmentsView">
+                    <af:outputText value="#{node.DepartmentName}" id="ot2"/>
+                </f:facet>
+                <f:facet name="de.hahn.blog.treetable.model.views.EmployeesView">
+                    <af:outputText value="ID: #{node.EmployeeId}" id="ot11"/>
+                </f:facet>
+                <f:facet name="default">
+                    <!-- use this facet if the other facets don't match! -->
+                    <af:outputText value="#{node}+++++#{node.hierTypeBinding.viewDefName}"
+                                   id="otd11"/>
+                </f:facet>
+            </af:switcher>
+        </af:column>
+    </f:facet>
+    <af:column id="c2" width="200">
+        <af:switcher facetName="#{node.hierTypeBinding.viewDefName}" defaultFacet="default"
+                     id="sw2">
+            <f:facet name="de.hahn.blog.treetable.model.views.DepartmentsView">
+                <af:outputText value="#{not empty node.MgrLastName ? 'Manager: ' : ''}"
+                               id="ot5" inlineStyle="font-weight:bold;"/>
+                <af:outputText value="#{not empty node.MgrLastName ? node.MgrLastName : ''}"
+                               id="ot6"/>
+                <af:outputText value="#{not empty node.MgrLastName ? ', ' : ''}" id="ot4"/>
+                <af:outputText value="#{not empty node.MgrLastName ? node.MgrFirstName : ''}"
+                               id="ot7"/>
+            </f:facet>
+            <f:facet name="de.hahn.blog.treetable.model.views.EmployeesView">
+                <af:outputText value="#{node.LastName}" id="ot211"/>
+            </f:facet>
+            <f:facet name="default">
+                <!-- use this facet if the other facets don't match! -->
+                <af:outputText value="#{node}+++++#{node.hierTypeBinding.viewDefName}"
+                               id="otd211"/>
+            </f:facet>
+        </af:switcher>
+    </af:column>
+    <af:column id="c3">
+        <af:outputText value="#{node.FirstName}" id="ot3"/>
+    </af:column>
+</af:treeTable>
+                        </af:panelCollection>
+                    </af:gridCell>
+                </af:gridRow>
+            </af:panelGridLayout>
+        </af:form>
+    </af:document>
+</f:view>
